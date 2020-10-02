@@ -1,5 +1,7 @@
 #pragma once
 
+#define SFTENT_KEYS KC_RSFT, KC_TRNS, SFTENT_KEY
+
 #ifdef AUDIO_ENABLE
     #define STARTUP_SONG SONG(PREONIC_SOUND)
     // #define STARTUP_SONG SONG(NO_SOUND)

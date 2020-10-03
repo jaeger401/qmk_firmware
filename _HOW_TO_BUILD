@@ -1,0 +1,5 @@
+To build:
+make preonic/rev3:jaeger401
+
+Or put the board in flash mode (adjust-Q) and flash it:
+make preonic/rev3:jaeger401:dfu-util

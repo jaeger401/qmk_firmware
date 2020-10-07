@@ -17,6 +17,9 @@
 #include QMK_KEYBOARD_H
 #include "muse.h"
 
+bool is_cmd_tab_active = false;
+uint16_t cmd_tab_timer = 0;
+
 enum preonic_layers {
   _QWERTY,
   _JSG,
@@ -32,8 +35,8 @@ enum preonic_keycodes {
   DVORAK,
   LOWER,
   RAISE,
-  BACKLIT,
-  LOCKSCN,
+  BACKLIT,  // unused
+  LOCKSCN,  // ctrl + cmd + Q
   RMRUNTHS, // RubyMine run this spec/context
   RMRUN,    // RubyMine run spec/context
   RMDEBUG,  // RubyMine debug
@@ -244,12 +247,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           break;
         case CMDTAB:
           if (record->event.pressed) {
-            SEND_STRING(SS_DOWN(X_LGUI));
-            SEND_STRING(SS_TAP(X_TAB));
+            if (!is_cmd_tab_active) {
+              is_cmd_tab_active = true;
+              register_code(KC_LGUI);
+            }
+            cmd_tab_timer = timer_read();
+            register_code(KC_TAB);
           } else {
-            SEND_STRING(SS_UP(X_LGUI));
+            unregister_code(KC_TAB);
           }
-          return true;
           break;
         /* No longer used
         case BACKLIT:
@@ -326,6 +332,12 @@ void dip_switch_update_user(uint8_t index, bool active) {
 
 
 void matrix_scan_user(void) {
+  if (is_cmd_tab_active) {
+    if (timer_elapsed(cmd_tab_timer) > 1000) {
+      unregister_code(KC_LGUI);
+      is_cmd_tab_active = false;
+    }
+  }
 #ifdef AUDIO_ENABLE
     if (muse_mode) {
         if (muse_counter == 0) {

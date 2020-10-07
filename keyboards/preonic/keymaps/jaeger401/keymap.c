@@ -32,7 +32,11 @@ enum preonic_keycodes {
   DVORAK,
   LOWER,
   RAISE,
-  BACKLIT
+  BACKLIT,
+  LOCKSCN,
+  RMRUNTHS, // RubyMine run this spec/context
+  RMRUN,    // RubyMine run spec/context
+  RMDEBUG   // RubyMine debug
 };
 
 // Borrowed from the Planck, but replaced by explicit definition of Shift+Enter keys in config.h
@@ -63,23 +67,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* jsg
  * ,-----------------------------------------------------------------------------------.
- * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |LckScn|      |      |      |      |      |      |      |      |      |      | Mute |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |      |      |      |      |      |      |      | Run  |RunThs|      |      |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |      |      |      |      |      |      | Left | Down |  Up  |Right |      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |      |      |      |      |      |      |      |RMDbg |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | jsg  | Ctrl | Alt  | GUI  |Lower |    Space    |Raise | Left | Down |  Up  |Right |
+ * | jsg  | Ctrl | Alt  | GUI  |Lower | Play/Pause  |Raise | Left | Down |  Up  |Right |
  * `-----------------------------------------------------------------------------------'
  */
 [_JSG] = LAYOUT_preonic_grid(
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-  _______, _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-  JSG,     KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+  LOCKSCN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MUTE,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RMRUN,   RMRUNTHS,XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX,
+  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RMDEBUG, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  JSG,     KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_MPLY, KC_MPLY, RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 ),
 
 /* Dvorak
@@ -210,6 +214,32 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             update_tri_layer(_LOWER, _RAISE, _ADJUST);
           }
           return false;
+          break;
+        case LOCKSCN:
+          if (record->event.pressed) {
+            SEND_STRING(SS_LCTL(SS_LGUI("q")));
+          }
+          return true;
+          break;
+        case RMRUNTHS:
+          if (record->event.pressed) {
+            SEND_STRING(SS_LCTL(SS_LALT("r")));
+          } else {
+            SEND_STRING("2");
+          }
+          return true;
+          break;
+        case RMRUN:
+          if (record->event.pressed) {
+            SEND_STRING(SS_LCTL("r"));
+          }
+          return true;
+          break;
+        case RMDEBUG:
+          if (record->event.pressed) {
+            SEND_STRING(SS_LCTL("d"));
+          }
+          return true;
           break;
         /* No longer used
         case BACKLIT:

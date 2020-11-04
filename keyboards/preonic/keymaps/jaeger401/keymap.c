@@ -86,9 +86,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      | Run  |RunThs|      |      |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |      |      |      |      |      | Left | Down |  Up  |Right |      |      |
+ * |      |Ctrl-A|      |      |      |      | Left | Down |  Up  |Right |      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |RMDbg |      |      |      |      |
+ * |      |      |      |Ctrl-C|      |      |      |RMDbg |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | jsg  | Ctrl | Alt  | GUI  |Lower | Play/Pause  |Raise | Prev | Vol- | Vol+ | Next |
  * `-----------------------------------------------------------------------------------'
@@ -96,8 +96,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_JSG] = LAYOUT_preonic_grid(
   LOCKSCN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MUTE,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RMRUN,   RMRUNTHS,XXXXXXX, XXXXXXX, XXXXXXX,
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX,
-  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RMDEBUG, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX, C(KC_A), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX,
+  _______, XXXXXXX, XXXXXXX, C(KC_C), XXXXXXX, XXXXXXX, XXXXXXX, RMDEBUG, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   JSG,     KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_MPLY, KC_MPLY, RAISE,   KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT
 ),
 

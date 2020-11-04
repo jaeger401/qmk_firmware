@@ -87,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      | Run  |RunThs|      |      |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |Ctrl-A|      |      |      |      | Left | Down |  Up  |Right |      |      |
+ * |      |Ctrl-A|      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |      |      |Ctrl-C|      |      |      |Debug |DbgThs|      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -97,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_JSG] = LAYOUT_preonic_grid(
   LOCKSCN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MUTE,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RMRUN,   RMRUNTHS,XXXXXXX, XXXXXXX, XXXXXXX,
-  XXXXXXX, C(KC_A), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX,
+  XXXXXXX, C(KC_A), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   _______, XXXXXXX, XXXXXXX, C(KC_C), XXXXXXX, XXXXXXX, XXXXXXX, RMDEBUG, RMDBGTHS,XXXXXXX, XXXXXXX, XXXXXXX,
   JSG,     KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_MPLY, KC_MPLY, RAISE,   KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT
 ),
@@ -148,9 +148,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |   `  |   1  |   2  |   3  |   4  |   5  |   6  |      |      |      | Back | Fwd  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |   `  |   1  |   2  |   3  |   4  |   5  |   6  | Home |  Up  | End  | PgUp |      |
+ * |   `  |   1  |   2  |   3  |   4  |   5  |   6  | Home |  Up  | End  |      |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  | Left | Down |Right | PgDn |  \   |
+ * |      |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  | Left | Down |Right |      |  \   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |TabLt |TabRt |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -159,8 +159,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_RAISE] = LAYOUT_preonic_grid(
   KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    _______, _______, _______,G(KC_LBRC),G(KC_RBRC),
-  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    JG_HOME, KC_UP,   JG_END,  KC_PGUP, _______,
-  _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, KC_BSLS,
+  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    JG_HOME, KC_UP,   JG_END,  _______, _______,
+  _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_LEFT, KC_DOWN, KC_RGHT, _______, KC_BSLS,
   _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  TABLEFT, TABRGHT, _______, _______, _______,
   _______, _______, _______, _______, _______, _______, _______, _______, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT
 ),
@@ -169,9 +169,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      | Reset|Debug |      |      |      |      |      |ShHome|ShftUp|ShEnd |      |
+ * |      | Reset|Debug |      |      |      |      |ShHome|ShftUp|ShEnd | PgUp |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |      |      |Aud on|AudOff|Qwerty|      |      |ShLeft|ShDown|ShRght|      |
+ * |      |      |      |Aud on|AudOff|Qwerty|      |ShLeft|ShDown|ShRght| PgDn |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |Voice-|Voice+|Mus on|MusOff|MidiOn|MidOff|      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -180,8 +180,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_ADJUST] = LAYOUT_preonic_grid(
   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
-  _______, RESET,   DEBUG,   _______, _______, _______, _______, S_HOME,  S_UP,    S_END,   _______, _______,
-  _______, _______, MU_MOD,  AU_ON,   AU_OFF,  QWERTY,  _______, S_LEFT,  S_DOWN,  S_RGHT,  _______, _______,
+  _______, RESET,   DEBUG,   _______, _______, _______, _______, S_HOME,  S_UP,    S_END,   KC_PGUP, _______,
+  _______, _______, MU_MOD,  AU_ON,   AU_OFF,  QWERTY,  _______, S_LEFT,  S_DOWN,  S_RGHT,  KC_PGDN, _______,
   _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  _______, _______, _______, _______, _______,
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_BRID, KC_BRIU
 )

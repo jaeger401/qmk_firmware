@@ -47,16 +47,14 @@ enum preonic_keycodes {
 // Borrowed from the Planck, but replaced by explicit definition of Shift+Enter keys in config.h
 // #define SFTENT ACTION_MODS_TAP_KEY(MOD_RSFT, KC_ENT)
 
-#define TABLEFT G(KC_LCBR)
-#define TABRGHT G(KC_RCBR)
-#define JG_HOME G(KC_LEFT)
-#define JG_END  G(KC_RGHT)
-#define S_HOME G(KC_LEFT)
-#define S_END  G(KC_RGHT)
-#define S_UP   KC_UP
-#define S_DOWN KC_DOWN
-#define S_LEFT A(KC_LEFT)
-#define S_RGHT A(KC_RGHT)
+#define TABLEFT  G(KC_LCBR)
+#define TABRGHT  G(KC_RCBR)
+#define JG_HOME  G(KC_LEFT)
+#define JG_END   G(KC_RGHT)
+#define W_LEFT   A(KC_LEFT)   // Word left on Mac
+#define W_RGHT   A(KC_RGHT)   // Word right on Mac
+#define RMLINEUP LSA(KC_UP)   // RubyMine move line up
+#define RMLINEDN LSA(KC_DOWN) // RubyMine move line down
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -169,9 +167,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      | Reset|Debug |      |      |      |      |ShHome|ShftUp|ShEnd | PgUp |      |
+ * |      | Reset|Debug |      |      |      |LineUp|ShHome|  Up  |ShEnd | PgUp |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |CapsLk|      |      |Aud on|AudOff|Qwerty|      |ShLeft|ShDown|ShRght| PgDn |      |
+ * |CapsLk|      |      |Aud on|AudOff|Qwerty|LineDn|ShLeft| Down |ShRght| PgDn |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |Voice-|Voice+|Mus on|MusOff|MidiOn|MidOff|      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -180,8 +178,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_ADJUST] = LAYOUT_preonic_grid(
   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
-  _______, RESET,   DEBUG,   _______, _______, _______, _______, S_HOME,  S_UP,    S_END,   KC_PGUP, _______,
-  KC_CAPS, _______, MU_MOD,  AU_ON,   AU_OFF,  QWERTY,  _______, S_LEFT,  S_DOWN,  S_RGHT,  KC_PGDN, _______,
+  _______, RESET,   DEBUG,   _______, _______, _______, RMLINEUP,JG_HOME, KC_UP,   JG_END,  KC_PGUP, _______,
+  KC_CAPS, _______, MU_MOD,  AU_ON,   AU_OFF,  QWERTY,  RMLINEDN,W_LEFT,  KC_DOWN, W_RGHT,  KC_PGDN, _______,
   _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  _______, _______, _______, _______, _______,
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_BRID, KC_BRIU
 )

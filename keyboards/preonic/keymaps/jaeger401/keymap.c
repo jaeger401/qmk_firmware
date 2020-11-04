@@ -37,9 +37,10 @@ enum preonic_keycodes {
   RAISE,
   BACKLIT,  // unused
   LOCKSCN,  // ctrl + cmd + Q
+  RMRUN,    // RubyMine run
   RMRUNTHS, // RubyMine run this spec/context
-  RMRUN,    // RubyMine run spec/context
   RMDEBUG,  // RubyMine debug
+  RMDBGTHS, // RubyMine debug this spec/context
   CMDTAB    // cmd + tab
 };
 
@@ -88,7 +89,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |      |Ctrl-A|      |      |      |      | Left | Down |  Up  |Right |      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |      |      |Ctrl-C|      |      |      |RMDbg |      |      |      |      |
+ * |      |      |      |Ctrl-C|      |      |      |Debug |DbgThs|      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | jsg  | Ctrl | Alt  | GUI  |Lower | Play/Pause  |Raise | Prev | Vol- | Vol+ | Next |
  * `-----------------------------------------------------------------------------------'
@@ -97,7 +98,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   LOCKSCN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MUTE,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RMRUN,   RMRUNTHS,XXXXXXX, XXXXXXX, XXXXXXX,
   XXXXXXX, C(KC_A), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX,
-  _______, XXXXXXX, XXXXXXX, C(KC_C), XXXXXXX, XXXXXXX, XXXXXXX, RMDEBUG, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  _______, XXXXXXX, XXXXXXX, C(KC_C), XXXXXXX, XXXXXXX, XXXXXXX, RMDEBUG, RMDBGTHS,XXXXXXX, XXXXXXX, XXXXXXX,
   JSG,     KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_MPLY, KC_MPLY, RAISE,   KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT
 ),
 
@@ -253,6 +254,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case RMDEBUG:
           if (record->event.pressed) {
             SEND_STRING(SS_LCTL("d"));
+          }
+          return true;
+          break;
+        case RMDBGTHS:
+          if (record->event.pressed) {
+            SEND_STRING(SS_LCTL(SS_LALT("d")));
+          } else {
+            SEND_STRING("2");
           }
           return true;
           break;

@@ -48,13 +48,14 @@ enum preonic_keycodes {
 
 #define TABLEFT G(KC_LCBR)
 #define TABRGHT G(KC_RCBR)
-
-#define S_HOME S(KC_HOME)
-#define S_END  S(KC_END)
-#define S_UP   S(KC_UP)
-#define S_DOWN S(KC_DOWN)
-#define S_LEFT S(KC_LEFT)
-#define S_RGHT S(KC_RGHT)
+#define JG_HOME G(KC_LEFT)
+#define JG_END  G(KC_RGHT)
+#define S_HOME G(KC_LEFT)
+#define S_END  G(KC_RGHT)
+#define S_UP   KC_UP
+#define S_DOWN KC_DOWN
+#define S_LEFT A(KC_LEFT)
+#define S_RGHT A(KC_RGHT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -129,7 +130,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * | Del  |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |   -  |   =  |   [  |   ]  |  |   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |      |      | Home | End  |      |
+ * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |             |      | Prev | Vol- | Vol+ | Next |
  * `-----------------------------------------------------------------------------------'
@@ -157,7 +158,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_RAISE] = LAYOUT_preonic_grid(
   KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    _______, _______, _______,G(KC_LBRC),G(KC_RBRC),
-  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_HOME, KC_UP,   KC_END,  KC_PGUP, _______,
+  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    JG_HOME, KC_UP,   JG_END,  KC_PGUP, _______,
   _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, KC_BSLS,
   _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  TABLEFT, TABRGHT, _______, _______, _______,
   _______, _______, _______, _______, _______, _______, _______, _______, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT

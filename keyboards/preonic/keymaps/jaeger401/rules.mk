@@ -1,1 +1,4 @@
 SRC += muse.c
+BOOTMAGIC_ENABLE = no
+WAIT_FOR_USB = yes
+# CONSOLE_ENABLE = yes
